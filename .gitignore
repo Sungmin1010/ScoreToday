@@ -99,3 +99,6 @@ NewSpring/target/m2e-wtp/web-resources/META-INF/maven/com.spring/example/pom.pro
 NewSpring/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 NewSpring/src/main/java/com/spring/example/util/S3Test.java
 NewSpring/src/main/java/com/spring/example/util/S3util.java
+ScoreToday/target/m2e-wtp/web-resources/META-INF/maven/com.sct/controller/pom.properties
+Servers/
+ScoreToday/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
