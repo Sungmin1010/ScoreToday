@@ -5,7 +5,7 @@
   
 <mapper namespace="com.sct.mapper.UserMapper">
   
-  <select id="selectUser" resultType="User">
+  <select id="selectUser" resultType="UserVO">
     select * from User where id = #{id} and password=#{password}
   </select>
   
