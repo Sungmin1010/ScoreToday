@@ -14,6 +14,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="file:src/main/resources/database.properties" /> 
 	
+	<context:component-scan base-package="com.sct.dao"/>
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"/>
 		<property name="url" value="${jdbc.url}"/>
@@ -25,6 +27,10 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 		
 </beans>
