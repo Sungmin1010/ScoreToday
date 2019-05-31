@@ -1,5 +1,7 @@
 package com.sct.vo;
 
+import java.util.Date;
+
 public class UserVO {
 
 	private int useq;
@@ -7,7 +9,7 @@ public class UserVO {
 	private String name;
 	private String email;
 	private String password;
-	private String joindate;
+	private Date joindate;
 	public int getUseq() {
 		return useq;
 	}
@@ -38,10 +40,10 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getJoindate() {
+	public Date getJoindate() {
 		return joindate;
 	}
-	public void setJoindate(String joindate) {
+	public void setJoindate(Date joindate) {
 		this.joindate = joindate;
 	}
 	@Override
