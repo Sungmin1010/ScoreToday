@@ -17,13 +17,20 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserVO getUser(UserVO vo) {
-		return sqlSession.selectOne(namespace+".getUser");
+		
+		return sqlSession.selectOne(namespace+".selectUser", vo);
 	}
 
 	@Override
 	public void insertUser(UserVO vo) {
 		sqlSession.insert(namespace+".insertUser", vo);
 
+	}
+
+	@Override
+	public void deleteUser(UserVO vo) {
+		sqlSession.delete(namespace+".deleteUser", vo);
+		
 	}
 
 }

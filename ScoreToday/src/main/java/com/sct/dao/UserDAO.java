@@ -4,8 +4,10 @@ import com.sct.vo.UserVO;
 
 public interface UserDAO {
 	
-	public UserVO getUser(UserVO user);
+	public UserVO getUser(UserVO vo);
 	
-	public void insertUser(UserVO user);
+	public void insertUser(UserVO vo);
+	
+	public void deleteUser(UserVO vo);
 
 }
