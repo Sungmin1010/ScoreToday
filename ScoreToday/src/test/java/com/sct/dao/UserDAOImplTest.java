@@ -51,8 +51,19 @@ public class UserDAOImplTest {
 	}
 	
 	@Test
+	public void testWrongPassword() throws Exception {
+		fail();//TODO
+	}
+	
+	@Test
+	public void testWrongId() throws Exception {
+		fail();//TODO
+	}
+	
+	
+	@Test
 	public void testInsertUser() throws Exception {
-		
+		fail();//TODO
 		
 	}
 	
