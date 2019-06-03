@@ -6,12 +6,16 @@
 <mapper namespace="com.sct.mapper.UserMapper">
   
   <select id="selectUser" resultType="UserVO">
-    select * from User where id = #{id} and password=#{password}
+    select * from tb_user where id = #{id} and password=#{password}
   </select>
   
   <insert id="insertUser">
   	insert into tb_user (id, name, email, password, joindate)
   	values(#{id}, #{name}, #{email}, #{password}, CURRENT_TIMESTAMP)
   </insert>
+  
+  <delete id="deleteUser">
+  	delete from tb_user where id=#{id}
+  </delete>
   
 </mapper>
