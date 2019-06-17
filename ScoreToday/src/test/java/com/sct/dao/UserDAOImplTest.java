@@ -23,29 +23,35 @@ public class UserDAOImplTest {
 	@Inject
 	private UserDAO dao;
 	
-	private UserVO vo;
+	private UserVO testData;
 	
 	@Before
 	public void setUp() throws Exception{
 		//insert test data
-		this.vo = new UserVO();
-		vo.setId("lmsg");
-		vo.setName("임성민");
-		vo.setEmail("lmsgsm1@test.com");
-		vo.setPassword("1234");
+		this.testData = new UserVO();
+		testData.setId("lmsg");
+		testData.setName("임성민");
+		testData.setEmail("lmsgsm1@test.com");
+		testData.setPassword("1234");
 		//vo.setJoindate(new Date());
 		
-		dao.insertUser(vo);
+		dao.insertUser(testData);
 		
 	}
 
 	@Test
 	public void testGetUser() throws Exception {
-		UserVO getVO = dao.getUser(vo);
-		assertEquals(getVO.getId(), this.vo.getId());
-		assertEquals(getVO.getName(), this.vo.getName());
-		assertEquals(getVO.getEmail(), this.vo.getEmail());
-		assertEquals(getVO.getPassword(), this.vo.getPassword());
+		//given : 선행조건 기술
+		UserVO clientVO = new UserVO();
+		clientVO.setId("lmsg");
+		clientVO.setPassword("1234");
+		//when : 기능 수행
+		UserVO getVO = dao.getUser(clientVO);
+		//then : 결과 확인
+		assertEquals(getVO.getId(), clientVO.getId());
+		//assertEquals(getVO.getName(), clientVO.getName());
+		//assertEquals(getVO.getEmail(), clientVO.getEmail());
+		assertEquals(getVO.getPassword(), clientVO.getPassword());
 		//assertEquals(getVO.getJoindate(), this.vo.getJoindate());
 		
 	}
@@ -61,15 +67,9 @@ public class UserDAOImplTest {
 	}
 	
 	
-	@Test
-	public void testInsertUser() throws Exception {
-		fail();//TODO
-		
-	}
-	
 	@After
 	public void tearDown() throws Exception{
-		dao.deleteUser(vo);
+		dao.deleteUser(testData);
 	}
 
 }
