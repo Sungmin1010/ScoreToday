@@ -58,12 +58,26 @@ public class UserDAOImplTest {
 	
 	@Test
 	public void testWrongPassword() throws Exception {
-		fail();//TODO
+		//given
+		UserVO clientVO = new UserVO();
+		clientVO.setId("lmsg");
+		clientVO.setPassword("wrong");
+		//when
+		UserVO getvo = dao.getUser(clientVO);
+		//then
+		assertNull(getvo);
 	}
 	
 	@Test
 	public void testWrongId() throws Exception {
-		fail();//TODO
+		//given
+		UserVO clientVO = new UserVO();
+		clientVO.setId("wrong");
+		clientVO.setPassword("wrong");
+		//when
+		UserVO getvo = dao.getUser(clientVO);
+		//then
+		assertNull(getvo);
 	}
 	
 	
