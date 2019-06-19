@@ -32,4 +32,9 @@ public class UserController {
 		return "main";
 	}
 
+	public void setUserService(UserService userService) {
+		this.service = userService;
+		
+	}
+
 }
