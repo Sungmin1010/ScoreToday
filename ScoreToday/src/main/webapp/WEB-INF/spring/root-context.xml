@@ -15,6 +15,7 @@
 	<context:property-placeholder location="classpath:database.properties" /> 
 	
 	<context:component-scan base-package="com.sct.dao"/>
+	<context:component-scan base-package="com.sct.service"/>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"/>
