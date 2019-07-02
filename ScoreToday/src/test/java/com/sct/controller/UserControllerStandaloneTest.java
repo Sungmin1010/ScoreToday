@@ -1,6 +1,8 @@
 package com.sct.controller;
 
+import static org.hamcrest.CoreMatchers.anything;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,6 +24,7 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.sct.service.UserService;
+import com.sct.vo.UserVO;
 
 //@RunWith(SpringJUnit4ClassRunner.class) //MockitoJUnitRunner.class
 public class UserControllerStandaloneTest {
@@ -37,10 +40,10 @@ public class UserControllerStandaloneTest {
 	@Before
 	public void setup() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		//userController.setUserService(userService);
+		
 		
 		InternalResourceViewResolver internalResourceViewResolver = new	InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF/views");
+		internalResourceViewResolver.setPrefix("/WEB-INF/views/");
 		internalResourceViewResolver.setSuffix(".jsp");
 		
 		this.mockMvc = MockMvcBuilders.standaloneSetup(userController)
@@ -49,8 +52,16 @@ public class UserControllerStandaloneTest {
 	
 	@Test
 	public void testLogin2() throws Exception {
-		RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/login").param("id", "testid").param("password", "abcd1234");
-		mockMvc.perform(reqBuilder).andDo(print())
+		UserVO expectedUser = new UserVO();
+		expectedUser.setId("testid");
+		expectedUser.setPassword("abcd1234");
+		expectedUser.setEmail("test@mail.com");
+		expectedUser.setName("sung");
+		
+		when(userService.login(any(UserVO.class))).thenReturn(expectedUser);
+		//RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/login").param("id", "testid").param("password", "abcd1234");
+		mockMvc.perform(post("/login").param("id", "testid").param("password", "abcd1234"))
+		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(view().name("main"));
 	}
