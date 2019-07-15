@@ -24,7 +24,7 @@ public class UserController {
 	@Inject
 	private UserService service;
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/main", method=RequestMethod.POST)
 	public String login(Model model, UserVO vo, RedirectAttributes rttr, HttpSession session) throws Exception {
 		logger.info("입력 vo : "+ vo.toString());
 		UserVO result = service.login(vo);
@@ -36,8 +36,24 @@ public class UserController {
 		UserInfoVO userInfo = new UserInfoVO(result.getId(), result.getName());
 		session.setAttribute("userInfo", userInfo);
 		return "main/main";
+		//return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/main/static", method=RequestMethod.GET)
+	public String userStatic()throws Exception{
+		return "main/static";
+	}
+	
+	@RequestMapping(value="/main/mypage", method=RequestMethod.GET)
+	public String userMypage()throws Exception{
+		return "main/mypage";
 	}
 
+	
+	/*
+	 * @RequestMapping(value="main", method=RequestMethod.GET) public String main()
+	 * throws Exception{ logger.info("로그인 완료 후 세션으로 이동"); return "main/main"; }
+	 */
 	public void setUserService(UserService userService) {
 		this.service = userService;
 		

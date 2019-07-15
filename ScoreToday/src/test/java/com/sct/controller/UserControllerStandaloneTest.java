@@ -53,11 +53,11 @@ public class UserControllerStandaloneTest {
 		expectedUser.setPassword("abcd1234");
 		expectedUser.setEmail("test@mail.com");
 		expectedUser.setName("sung");
-		UserInfoVO userInfo = new UserInfoVO("testid", "sung");
+		//UserInfoVO userInfo = new UserInfoVO("testid", "sung");
 		
 		when(userService.login(any(UserVO.class))).thenReturn(expectedUser);
 		//RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/login").param("id", "testid").param("password", "abcd1234");
-		mockMvc.perform(post("/login").param("id", "testid").param("password", "abcd1234"))
+		mockMvc.perform(post("/main").param("id", "testid").param("password", "abcd1234"))
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(view().name("main/main"))
@@ -69,7 +69,7 @@ public class UserControllerStandaloneTest {
 		//make stub : return userVO is null
 		when(userService.login(any(UserVO.class))).thenReturn(any(UserVO.class));
 		
-		mockMvc.perform(post("/login").param("id", "wrongid").param("password", "abcd1234"))
+		mockMvc.perform(post("/main").param("id", "wrongid").param("password", "abcd1234"))
 		.andDo(print())
 		.andExpect(status().is3xxRedirection()) //redirection is not OK status
 		.andExpect(redirectedUrl("/"))

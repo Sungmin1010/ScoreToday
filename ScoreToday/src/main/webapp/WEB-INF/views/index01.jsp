@@ -67,7 +67,7 @@
 
       <div class="ui center aligned grid">
         <div class="eight wide column">
-          <form class="ui large form" id="loginForm" action="/login" method="post">
+          <form class="ui large form" id="loginForm" action="/main" method="post">
         <div class="ui segment">
           <div class="field">
             <div class="ui left icon input">
