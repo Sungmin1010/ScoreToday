@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="Semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
-    <script src="Semantic/semantic.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
 
     <style type="text/css">
     body {
@@ -45,7 +45,10 @@
       </div>
     </div>
 
+
+
     <div class="ui main text container">
+    <h1>Hello, ${userInfo.name} !!! </h1>
       <h1 class="ui header">Today is .... </h1>
       <h4 class="ui horizontal divider header"> AM </h4>
       <table class="ui celled table">

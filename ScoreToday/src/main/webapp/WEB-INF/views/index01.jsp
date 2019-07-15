@@ -67,12 +67,12 @@
 
       <div class="ui center aligned grid">
         <div class="eight wide column">
-          <form class="ui large form">
+          <form class="ui large form" id="loginForm" action="/login" method="post">
         <div class="ui segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" placeholder="E-mail address">
+              <input type="text" name="id" placeholder="ID">
             </div>
           </div>
           <div class="field">
@@ -81,7 +81,7 @@
               <input type="password" name="password" placeholder="Password">
             </div>
           </div>
-          <div class="ui fluid large teal submit button">Login</div>
+          <div class="ui fluid large teal submit button" onclick="document.getElementById('loginForm').submit();">Login</div>
         </div>
         <div class="ui error message"></div>
       </form>
@@ -90,6 +90,9 @@
 
       </div>
 
+<script type="text/javascript">
+
+</script>
 
 
     <div class="ui inverted vertical footer segment">
