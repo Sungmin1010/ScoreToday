@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sct.mapper.ScoreMapper">
+  
+  
+  
+  <insert id="insertScore">
+  	insert into tb_user (id, name, email, password, joindate)
+  	values(#{id}, #{name}, #{email}, #{password}, CURRENT_TIMESTAMP)
+  </insert>
+  
+  
+  
+</mapper>
