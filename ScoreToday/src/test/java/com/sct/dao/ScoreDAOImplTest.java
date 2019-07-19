@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class ScoreDAOImplTest {
 	@Inject
 	private ScoreDAO dao;
 	
-	//@Transactional
+	@Transactional
 	@Test
 	public void testInsertScore() throws Exception {
 		//given : 선행조건 기술
