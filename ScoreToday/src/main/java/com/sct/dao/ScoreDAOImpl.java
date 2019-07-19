@@ -19,14 +19,14 @@ public class ScoreDAOImpl implements ScoreDAO {
 
 	@Override
 	public void insertScore(ScoreVO vo) {
-		// TODO 새로운 점수를 DB에 인서트
+		session.insert(namespace+".insertScore", vo);
 
 	}
 
 	@Override
 	public int countScore() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return session.selectOne(namespace+".countAllScore");
 		
 	}
 

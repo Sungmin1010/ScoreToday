@@ -8,9 +8,13 @@
   
   
   <insert id="insertScore">
-  	insert into tb_user (id, name, email, password, joindate)
-  	values(#{id}, #{name}, #{email}, #{password}, CURRENT_TIMESTAMP)
+  	insert into tb_score (useq, bodyscore, mindscore, mentalscore, scoredate, timecode) 
+values (#{useq}, #{bodyscore}, #{mindscore}, #{mentalscore}, CURRENT_TIMESTAMP, #{timecategory});
   </insert>
+  
+  <select id="countAllScore" resultType="Integer">
+  select count(*) from tb_score
+  </select>
   
   
   
