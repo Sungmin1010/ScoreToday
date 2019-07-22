@@ -85,13 +85,23 @@
         </tbody>
       </table>
       <h4 class="ui horizontal divider header"> PM </h4>
-      <button class="ui fluid button">
+      <button class="ui fluid button" id="p" onclick="recordBtn(this.id)">
         <i class="plus icon"></i>
         add new one
       </button>
     </div>
 
+<script>
+function recordBtn(id){
+	//get button's id
+	var timecategory = id;
+	//make uri
+	var uri = "/main/record?timecategory="+timecategory;
+	//go record page
+	 window.location.href=uri;
+}
 
+</script>
 
     <div class="ui inverted vertical footer segment">
       <div class="ui center aligned container">
