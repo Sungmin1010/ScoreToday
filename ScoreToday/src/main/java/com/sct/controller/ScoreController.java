@@ -14,12 +14,12 @@ public class ScoreController {
 	private static final Logger logger = LoggerFactory.getLogger(ScoreController.class);
 	
 	@RequestMapping(value="/main/record", method=RequestMethod.GET)
-	public String getRecord(@RequestParam(name="timecategory", defaultValue="x", required=false) char timecategory, Model model)throws Exception{
+	public String getRecord(@RequestParam(name="timecategory", defaultValue="x", required=false) String timecategory, Model model)throws Exception{
 		
-		String tc = makeTimeCategory(timecategory);
-		model.addAttribute("timecategory", tc);
+		//String tc = makeTimeCategory(timecategory);
+		model.addAttribute("timecategory", timecategory);
 		
-		return "/main/record";
+		return "main/record";
 	}
 
 	private String makeTimeCategory(char timecategory) {
