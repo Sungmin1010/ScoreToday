@@ -85,7 +85,7 @@
         </tbody>
       </table>
       <h4 class="ui horizontal divider header"> PM </h4>
-      <button class="ui fluid button" id="p" onclick="recordBtn(this.id)">
+      <button class="ui fluid button" id="PM" onclick="recordBtn(this.id)">
         <i class="plus icon"></i>
         add new one
       </button>
