@@ -39,6 +39,11 @@ public class UserController {
 		//return "redirect:/main";
 	}
 	
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String main()throws Exception{
+		return "main/main";
+	}
+	
 	@RequestMapping(value="/main/static", method=RequestMethod.GET)
 	public String userStatic()throws Exception{
 		return "main/static";
