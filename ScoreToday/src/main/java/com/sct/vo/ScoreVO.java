@@ -12,6 +12,30 @@ public class ScoreVO {
 	private char timecategory;
 	private int useq;
 	
+	private String tc;
+	
+	public String getTc() {
+		return tc;
+	}
+	public void setTc(String tc) {
+		this.tc = tc;
+		makeTimecategory(tc);
+		
+	}
+	private void makeTimecategory(String tc) {
+		if(tc.equals("AM")) {
+			setTimecategory('a');
+		}
+		if(tc.equals("NOON")) {
+			setTimecategory('n');
+		}
+		if(tc.equals("PM")) {
+			setTimecategory('p');
+		}
+		
+		
+	}
+	
 	public int getSseq() {
 		return sseq;
 	}
@@ -54,6 +78,13 @@ public class ScoreVO {
 	public void setUseq(int useq) {
 		this.useq = useq;
 	}
+	@Override
+	public String toString() {
+		return "ScoreVO [sseq=" + sseq + ", bodyscore=" + bodyscore + ", mindscore=" + mindscore + ", mentalscore="
+				+ mentalscore + ", scoredate=" + scoredate + ", timecategory=" + timecategory + ", useq=" + useq + "]";
+	}
+	
+	
 	
 	
 
