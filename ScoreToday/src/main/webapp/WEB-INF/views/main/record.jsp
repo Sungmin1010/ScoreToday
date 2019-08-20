@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -29,9 +30,7 @@
     }
   </style>
 
-    <script>
-
-  </script>
+    
     <title></title>
   </head>
   <body>
@@ -46,12 +45,13 @@
     </div>
 
     <div class="ui main text container">
-      <h1 class="ui header">Record ${timecategory} score </h1>
-      <form class="ui form">
+      <h1 class="ui header">당신의 <span id="timecategoryKOR"></span> 점수는? </h1>
+      <form class="ui form" id="scoreForm" action="/main/record" method="post">
+        <input type="hidden" name="tc" id="tc" value="${timecategory}">
         <div class="three fields">
           <div class="field">
             <label>Body score</label>
-            <select name="" id="" class="ui fluid dropdown">
+            <select name="bodyscore" id="bodyscore" class="ui fluid dropdown">
               <option value="">Score</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -66,7 +66,7 @@
             </select>
           </div>
           <div class="field"><label>Mind score</label>
-          <select name="" id="" class="ui fluid dropdown">
+          <select name="mindscore" id="mindscore" class="ui fluid dropdown">
             <option value="">Score</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -81,7 +81,7 @@
           </select></div>
           <div class="field">
             <label>Mental score</label>
-            <select name="" id="" class="ui fluid dropdown">
+            <select name="mentalscore" id="mentalscore" class="ui fluid dropdown">
               <option value="">Score</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -101,11 +101,31 @@
           <div class="field"><label>Memo</label><textarea rows="3"></textarea></div>
           <div class="field"><label>Memo</label><textarea rows="3"></textarea></div>
         </div> -->
-        <button class="ui center aligned primary button" type="submit">Save</button>
+        <button class="ui center aligned primary button" type="submit" onclick="document.getElementById('scoreForm').submin();">Save</button>
       </form>
 
     </div>
 
+    <script language="javascript" charset="UTF-8">
+    var tc = '${timecategory}';
+    var timecategoryKOR;
+    switch(tc){
+    case 'AM':
+    	timecategoryKOR = "오전";
+    	break;
+    case 'NOON':
+    	timecategoryKOR = "낮";
+    	break;
+    case 'PM':
+    	timecategoryKOR = "오후";
+    	break;
+    default:
+    	break;
+    }
+    var title = document.getElementById('timecategoryKOR');
+    title.innerHTML = timecategoryKOR;
+
+  </script>
 
 
     <div class="ui inverted vertical footer segment">
