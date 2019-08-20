@@ -1,10 +1,13 @@
 package com.sct.controller;
 
-import static org.hamcrest.CoreMatchers.any;
+
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -64,7 +67,7 @@ public class ScoreControllerTest {
 		
 	}
 	
-	@Test
+	//@Test --> 삭제 요망
 	public void testPostRecord() throws Exception {
 		//given : record bodyscore:10, mindscore10, mentalscore10, timecategory:a, useq:1
 		//when : request /main/record POST
@@ -73,15 +76,36 @@ public class ScoreControllerTest {
 		UserInfoVO mockUserInfo = mock(UserInfoVO.class);
 		//when(scoreService.addScore(any(ScoreVO.class))).thenReturn
 		RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/main/record")
-														.requestAttr("score", mockScoreVo)
+														.requestAttr("scoreVO", mockScoreVo)
 														.sessionAttr("userInfo", mockUserInfo);
 		mockMvc.perform(reqBuilder)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(view().name(is("main")));
+				.andExpect(view().name(is("main/main")));
 		
-		//verify(scoreService).addScore();
-				
+		
+	}
+	
+	@Test
+	public void testPostRecordWithRedirect() throws Exception {
+		//given : record bodyscore:10, mindscore10, mentalscore10, timecategory:a, useq:1
+		//when : request /main/record POST
+		//then : status OK, Attribute "msg":"success", redirect: /main
+		ScoreVO mockScoreVo = mock(ScoreVO.class);
+		UserInfoVO mockUserInfo = mock(UserInfoVO.class);
+		RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/main/record")
+				.requestAttr("scoreVO", mockScoreVo)
+				.sessionAttr("userInfo", mockUserInfo);
+		
+		mockMvc.perform(reqBuilder)
+		.andDo(print())
+		.andExpect(status().is3xxRedirection())
+		.andExpect(flash().attribute("msg", "success"));
+		
+		verify(scoreService).addScore(any(ScoreVO.class), any(UserInfoVO.class));
+		
+		//useq가 1인 사람의 score가 1개 증가 되었는지. (더 자세하게 한다면 scoreVO 결과와 동일하는지)
+		//fail();
 	}
 
 }
