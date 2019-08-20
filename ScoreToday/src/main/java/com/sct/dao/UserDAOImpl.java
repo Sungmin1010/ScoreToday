@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.sct.vo.UserInfoVO;
 import com.sct.vo.UserVO;
 
 @Repository
@@ -32,5 +33,13 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.delete(namespace+".deleteUser", vo);
 		
 	}
+
+	@Override
+	public int getUseq(UserInfoVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".selectUseq", vo);
+	}
+
+	
 
 }

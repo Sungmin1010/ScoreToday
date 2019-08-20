@@ -18,4 +18,8 @@
   	delete from tb_user where id=#{id}
   </delete>
   
+  <select id="selectUseq" resultType="int">
+  	select useq from tb_user where id=#{id}
+  </select>
+  
 </mapper>

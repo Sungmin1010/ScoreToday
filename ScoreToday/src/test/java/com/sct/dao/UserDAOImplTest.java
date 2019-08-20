@@ -1,7 +1,7 @@
 package com.sct.dao;
 
 import static org.junit.Assert.*;
-
+import static org.mockito.Mockito.*;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.sct.vo.UserInfoVO;
 import com.sct.vo.UserVO;
 
 
@@ -80,6 +81,18 @@ public class UserDAOImplTest {
 		assertNull(getvo);
 	}
 	
+	
+	@Test
+	public void testGetUseqWithUserInfo() throws Exception {
+		//given
+		UserInfoVO userInfo = new UserInfoVO("testid", "¿”º∫πŒ");
+		
+		//when
+		int useq = dao.getUseq(userInfo);
+		
+		//then
+		assertEquals(1, useq);
+	}
 	
 	@After
 	public void tearDown() throws Exception{

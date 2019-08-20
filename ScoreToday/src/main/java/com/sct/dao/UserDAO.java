@@ -1,5 +1,6 @@
 package com.sct.dao;
 
+import com.sct.vo.UserInfoVO;
 import com.sct.vo.UserVO;
 
 public interface UserDAO {
@@ -9,5 +10,7 @@ public interface UserDAO {
 	public void insertUser(UserVO vo);
 	
 	public void deleteUser(UserVO vo);
+	
+	public int getUseq(UserInfoVO vo);
 
 }
