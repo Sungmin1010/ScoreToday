@@ -16,6 +16,8 @@ values (#{useq}, #{bodyscore}, #{mindscore}, #{mentalscore}, CURRENT_TIMESTAMP, 
   select count(*) from tb_score
   </select>
   
-  
+  <select id="selectDayScore" resultType="ScoreVO">
+    SELECT * FROM tb_score WHERE useq=#{useq} AND DATE(scoredate)=#{scoredate};
+  </select>
   
 </mapper>
