@@ -46,7 +46,7 @@ public class ScoreDAOImplTest {
 	}
 	
 	@Test
-	public void testSelectThreeScore() throws Exception{
+	public void testSelectScoreInOneDay() throws Exception{
 		//given : 선행조건 기술
 		//useq가 1인 사용자의 2019년 8월 20일 입력한 점수가 2개 존재한다.
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
