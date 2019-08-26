@@ -49,11 +49,10 @@ public class ScoreDAOImplTest {
 	public void testSelectScoreInOneDay() throws Exception{
 		//given : 선행조건 기술
 		//useq가 1인 사용자의 2019년 8월 20일 입력한 점수가 2개 존재한다.
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = formatter.parse("2019-08-20");
-		UserDayScoreVO vo = new UserDayScoreVO();
-		vo.setUseq(1);
-		vo.setScoredate(date);
+		//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		//Date date = formatter.parse("2019-08-20");
+		UserDayScoreVO vo = new UserDayScoreVO(1, "2019-08-20");
+		
 		//when : 기능 수행
 		List<ScoreVO> scoreList = dao.selectDayScore(vo);
 		
@@ -62,5 +61,6 @@ public class ScoreDAOImplTest {
 		assertThat(scoreList.get(0).getBodyscore(), is(10));
 		assertThat(scoreList.get(1).getBodyscore(), is(8));
 	}
+	
 
 }

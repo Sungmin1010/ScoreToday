@@ -17,7 +17,7 @@ values (#{useq}, #{bodyscore}, #{mindscore}, #{mentalscore}, CURRENT_TIMESTAMP, 
   </select>
   
   <select id="selectDayScore" resultType="ScoreVO">
-    SELECT * FROM tb_score WHERE useq=#{useq} AND DATE(scoredate)=#{scoredate};
+    SELECT * FROM tb_score WHERE useq=#{useq} AND DATE(scoredate)=#{today};
   </select>
   
 </mapper>

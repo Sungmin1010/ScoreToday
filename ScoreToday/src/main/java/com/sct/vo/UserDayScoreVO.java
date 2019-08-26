@@ -1,22 +1,34 @@
 package com.sct.vo;
 
-import java.util.Date;
 
 public class UserDayScoreVO {
 	private int useq;
-	private Date scoredate;  //'yyyy-MM-dd'
+	private String today;  //'yyyy-MM-dd'
 	public int getUseq() {
 		return useq;
 	}
 	public void setUseq(int useq) {
 		this.useq = useq;
 	}
-	public Date getScoredate() {
-		return scoredate;
+	public String getToday() {
+		return today;
 	}
-	public void setScoredate(Date scoredate) {
-		this.scoredate = scoredate;
+	public void setToday(String today) {
+		this.today = today;
 	}
+	public UserDayScoreVO(int useq, String today) {
+		super();
+		this.useq = useq;
+		this.today = today;
+	}
+	public UserDayScoreVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
 	
 	
 
