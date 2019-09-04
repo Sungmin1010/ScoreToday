@@ -9,7 +9,7 @@ public class ScoreVO {
 	private int mindscore;
 	private int mentalscore;
 	private Date scoredate;
-	private char timecategory;
+	private String timecode;
 	private int useq;
 	
 	private String tc;
@@ -24,13 +24,13 @@ public class ScoreVO {
 	}
 	private void makeTimecategory(String tc) {
 		if(tc.equals("AM")) {
-			setTimecategory('a');
+			setTimecode("a");
 		}
 		if(tc.equals("NOON")) {
-			setTimecategory('n');
+			setTimecode("n");
 		}
 		if(tc.equals("PM")) {
-			setTimecategory('p');
+			setTimecode("p");
 		}
 		
 		
@@ -66,11 +66,11 @@ public class ScoreVO {
 	public void setScoredate(Date scoredate) {
 		this.scoredate = scoredate;
 	}
-	public char getTimecategory() {
-		return timecategory;
+	public String getTimecode() {
+		return timecode;
 	}
-	public void setTimecategory(char timecategory) {
-		this.timecategory = timecategory;
+	public void setTimecode(String timecode) {
+		this.timecode = timecode;
 	}
 	public int getUseq() {
 		return useq;
@@ -81,7 +81,7 @@ public class ScoreVO {
 	@Override
 	public String toString() {
 		return "ScoreVO [sseq=" + sseq + ", bodyscore=" + bodyscore + ", mindscore=" + mindscore + ", mentalscore="
-				+ mentalscore + ", scoredate=" + scoredate + ", timecategory=" + timecategory + ", useq=" + useq + "]";
+				+ mentalscore + ", scoredate=" + scoredate + ", timecategory=" + timecode + ", useq=" + useq + "]";
 	}
 	
 	
