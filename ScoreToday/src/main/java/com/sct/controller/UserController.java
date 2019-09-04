@@ -1,5 +1,9 @@
 package com.sct.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sct.service.UserService;
+import com.sct.vo.ScoreVO;
 import com.sct.vo.UserInfoVO;
 import com.sct.vo.UserVO;
 
@@ -35,12 +40,18 @@ public class UserController {
 		}
 		UserInfoVO userInfo = new UserInfoVO(result.getId(), result.getName());
 		session.setAttribute("userInfo", userInfo);
-		return "main/main";
-		//return "redirect:/main";
+		//return "main/main";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String main()throws Exception{
+	public String main(HttpSession session, Model model)throws Exception{
+		//TODO 사용자 정보와 날짜를 이용해서 입력된 점수들을 가져오는 로직 추가
+		logger.info("main으로 이동");
+		UserInfoVO userinfo = (UserInfoVO)session.getAttribute("userInfo");
+		List<ScoreVO> list = service.getScoresInOneDay(new Date(), userinfo);
+		
+		model.addAttribute("scoreList", list);
 		return "main/main";
 	}
 	
@@ -54,11 +65,7 @@ public class UserController {
 		return "main/mypage";
 	}
 
-	
-	/*
-	 * @RequestMapping(value="main", method=RequestMethod.GET) public String main()
-	 * throws Exception{ logger.info("로그인 완료 후 세션으로 이동"); return "main/main"; }
-	 */
+
 	public void setUserService(UserService userService) {
 		this.service = userService;
 		
