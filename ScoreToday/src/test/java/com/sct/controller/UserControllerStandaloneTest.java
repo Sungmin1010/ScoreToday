@@ -1,16 +1,21 @@
 package com.sct.controller;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +23,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.sct.service.UserService;
+import com.sct.vo.ScoreVO;
 import com.sct.vo.UserInfoVO;
 import com.sct.vo.UserVO;
 
@@ -75,6 +83,23 @@ public class UserControllerStandaloneTest {
 		.andExpect(redirectedUrl("/"))
 		.andExpect(flash().attribute("msg", "fail"));
 	}
+	
+	@Test
+	public void testMainPageWithUserScoreInOneDay() throws Exception {
+		//given : id=testid 인 사람이 2019-08-20에 main페이지 GET할 경우, score점수를가져와서 attribute에 list로 넣는다
+		UserInfoVO userInfo = new UserInfoVO("testid", "testname");
+		RequestBuilder reqBuilder = MockMvcRequestBuilders.get("/main").sessionAttr("userInfo", userInfo);
+		List<ScoreVO> mockList = mock(List.class);
+		when(userService.getScoresInOneDay(any(Date.class), any(UserInfoVO.class))).thenReturn(mockList);
+		//when
+		mockMvc.perform(reqBuilder)
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(view().name("main/main"))
+		.andExpect(model().attribute("scoreList", mockList));
+		//then
+	}
+	
 	
 	
 
