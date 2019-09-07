@@ -194,5 +194,14 @@ function recordBtn(id){
         </div>
       </div>
     </div>
+    <script>
+    var result = '${msg}';
+    if(result == 'success'){
+    	alert("점수가 입력되었습니다.");
+    }
+    if(result == 'score-error'){
+    	alert("더이상 점수를 입력할 수 없습니다.");
+    }
+    </script>
   </body>
 </html>

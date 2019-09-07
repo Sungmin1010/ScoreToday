@@ -11,6 +11,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.junit.Before;
@@ -111,12 +113,15 @@ public class ScoreControllerTest {
 	public void score_can_not_recorded_more_than_3times_a_day() throws Exception {
 		//gien
 		UserInfoVO mockUserInfo = mock(UserInfoVO.class);
-		//when(userService.login(any(UserVO.class))).thenReturn(any(UserVO.class));
-		//when()
-		RequestBuilder reqBuilder = MockMvcRequestBuilders.get("/main/record")
-				.sessionAttr("userInfo", mockUserInfo).param("timecategory", "AM");
+		when(scoreService.checkBeforeAddScore(any(Date.class), any(UserInfoVO.class))).thenReturn(false);
+		RequestBuilder reqBuilder = MockMvcRequestBuilders.post("/main/record")
+				.sessionAttr("userInfo", mockUserInfo);
 		//when
+		ResultActions resultActions = mockMvc.perform(reqBuilder);
 		//then
+		resultActions.andDo(print())
+		.andExpect(status().is3xxRedirection())
+		.andExpect(flash().attribute("msg", "score-error"));
 	}
 	
 	@Test

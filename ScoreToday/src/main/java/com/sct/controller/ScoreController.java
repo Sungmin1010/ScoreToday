@@ -1,5 +1,7 @@
 package com.sct.controller;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -42,9 +44,16 @@ public class ScoreController {
 		//TODO : 리팩토링 & 테스트 부분에 서비스 메소드 verify 코드 추가
 		UserInfoVO userinfo = (UserInfoVO) session.getAttribute("userInfo");
 		logger.info("[ScoreVO]"+scoreVO);
-		service.addScore(scoreVO, userinfo);
-		rttr.addFlashAttribute("msg", "success");
+		if(service.checkBeforeAddScore(new Date(), userinfo)) {
+			service.addScore(scoreVO, userinfo);
+			rttr.addFlashAttribute("msg", "success");
+			return "redirect:/main";
+		}
+		rttr.addFlashAttribute("msg", "score-error");
 		return "redirect:/main";
+		
+		
+		
 		//return "main/main";
 	}
 
