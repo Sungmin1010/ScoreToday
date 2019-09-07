@@ -9,7 +9,7 @@
   
   <insert id="insertScore">
   	insert into tb_score (useq, bodyscore, mindscore, mentalscore, scoredate, timecode) 
-values (#{useq}, #{bodyscore}, #{mindscore}, #{mentalscore}, CURRENT_TIMESTAMP, #{timecategory});
+values (#{useq}, #{bodyscore}, #{mindscore}, #{mentalscore}, CURRENT_TIMESTAMP, #{timecode});
   </insert>
   
   <select id="countAllScore" resultType="Integer">

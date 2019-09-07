@@ -35,7 +35,7 @@ public class ScoreDAOImplTest {
 		vo.setBodyscore(10);
 		vo.setMindscore(10);
 		vo.setMentalscore(10);
-		vo.setTimecategory('a');
+		vo.setTimecode("a");
 		vo.setUseq(1);
 		//when : 기능 수행
 		dao.insertScore(vo);
