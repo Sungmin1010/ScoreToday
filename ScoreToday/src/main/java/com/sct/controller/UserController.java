@@ -49,9 +49,10 @@ public class UserController {
 		//TODO 사용자 정보와 날짜를 이용해서 입력된 점수들을 가져오는 로직 추가
 		logger.info("main으로 이동");
 		UserInfoVO userinfo = (UserInfoVO)session.getAttribute("userInfo");
-		List<ScoreVO> list = service.getScoresInOneDay(new Date(), userinfo);
+		//List<ScoreVO> list = service.getScoresInOneDay(new Date(), userinfo);
 		
-		model.addAttribute("scoreList", list);
+		//model.addAttribute("scoreList", list);
+		model.addAllAttributes(service.getThreeScores(new Date(), userinfo));
 		return "main/main";
 	}
 	
