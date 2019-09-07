@@ -25,12 +25,16 @@ public class ScoreController {
 	private ScoreService service;
 	
 	@RequestMapping(value="/main/record", method=RequestMethod.GET)
-	public String getRecord(@RequestParam(name="timecategory", defaultValue="x", required=false) String timecategory, Model model)throws Exception{
+	public String getRecord(@RequestParam(name="timecategory", defaultValue="none", required=true) String timecategory, Model model, RedirectAttributes rttr)throws Exception{
 		
 		//String tc = makeTimeCategory(timecategory);
-		model.addAttribute("timecategory", timecategory);
+		if(timecategory.equals("AM") || timecategory.equals("NOON") || timecategory.equals("PM")) {
+			model.addAttribute("timecategory", timecategory);
+			return "main/record";
+		}
+		rttr.addFlashAttribute("msg", "attribute-error");
+		return "redirect:/main";
 		
-		return "main/record";
 	}
 	
 	@RequestMapping(value="/main/record", method=RequestMethod.POST)
