@@ -24,6 +24,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -99,6 +100,29 @@ public class UserControllerStandaloneTest {
 		.andExpect(model().attribute("scoreList", mockList));
 		//then
 	}
+	
+	@Test
+	public void testMainPageWithThreeScore() throws Exception {
+		//given
+		UserInfoVO userInfo = new UserInfoVO("testid", "testname");
+		RequestBuilder reqBuilder = MockMvcRequestBuilders.get("/main").sessionAttr("userInfo", userInfo);
+		
+		//when
+		ResultActions resultActions = mockMvc.perform(reqBuilder)
+				.andDo(print());
+		
+		//then
+		resultActions.andExpect(status().isOk())
+		.andExpect(view().name("main/main"))
+		//.andExpect(model().attributeExists("am", "noon", "pm"))
+		.andExpect(model().attribute("am", any(ScoreVO.class)))
+		.andExpect(model().attribute("noon", any(ScoreVO.class)))
+		.andExpect(model().attribute("pm", any(ScoreVO.class)))
+		;
+		
+	}
+	
+	
 	
 	
 	
