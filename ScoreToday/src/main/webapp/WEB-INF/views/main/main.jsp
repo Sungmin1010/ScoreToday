@@ -51,80 +51,90 @@
     <div class="ui main text container">
       <h1>Hello, ${userInfo.name} !!! </h1>
       <h1 class="ui header">Today is .... </h1>
-      
-      <!-- scoreList 이용한 코드 추가하기 -->
-      <c:forEach var="score" items="${scoreList}">
-         <c:choose>
-        	<c:when test="${score.timecode eq 'a'}">
-            <h4 class="ui horizontal divider header"> AM </h4>
-        	</c:when>
-        	<c:when test="${score.timecode eq 'n'}">
-            <h4 class="ui horizontal divider header"> NOON </h4>
-        	</c:when>
-        	<c:when test="${score.timecode eq 'p'}">
-            <h4 class="ui horizontal divider header"> PM </h4>
-        	</c:when>
-        	<c:otherwise></c:otherwise>   
-    	</c:choose>
-    	<table class="ui celled table">
-        <thead class="center aligned">
-          <tr>
-            <th>Body</th>
-            <th>Mind</th>
-            <th>Mental</th>
-          </tr>
-        </thead>
-        <tbody class="center aligned">
-          <tr>
-            <td><h1 class="ui header">${score.bodyscore}</h1></td> <!-- two wide column -->
-            <td><h1 class="ui header">${score.mindscore}</h1></td>
-            <td><h1 class="ui header">${score.mentalscore}</h1></td>
-          </tr>
-        </tbody>
-      </table>
-      </c:forEach>
-      
-      <!-- <h4 class="ui horizontal divider header"> AM </h4>
-      <table class="ui celled table">
-        <thead class="center aligned">
-          <tr>
-            <th>Body</th>
-            <th>Mind</th>
-            <th>Mental</th>
-          </tr>
-        </thead>
-        <tbody class="center aligned">
-          <tr>
-            <td><h1 class="ui header">7</h1></td> two wide column
-            <td><h1 class="ui header">5</h1></td>
-            <td><h1 class="ui header">9</h1></td>
-          </tr>
-        </tbody>
-      </table>
-      
+<!-- AM Score -->
+      <h4 class="ui horizontal divider header"> AM </h4>
+      <c:choose>
+        <c:when test="${empty am.scoredate}">
+          <button class="ui fluid button" id="AM" onclick="recordBtn(this.id)">
+            <i class="plus icon"></i>add new one
+      	  </button>
+      	</c:when>
+        <c:otherwise>
+          <table class="ui celled table">
+            <thead class="center aligned">
+              <tr>
+                <th>Body</th>
+                <th>Mind</th>
+                <th>Mental</th>
+              </tr>
+            </thead>
+            <tbody class="center aligned">
+              <tr>
+                <td><h1 class="ui header">${am.bodyscore}</h1></td>
+                <td><h1 class="ui header">${am.mindscore}</h1></td>
+                <td><h1 class="ui header">${am.mentalscore}</h1></td>
+              </tr>
+            </tbody>
+          </table>
+        </c:otherwise>
+      </c:choose>
+<!-- NOON Score -->
       <h4 class="ui horizontal divider header"> NOON </h4>
-      <table class="ui celled table">
-        <thead class="center aligned">
-          <tr>
-            <th>Body</th>
-            <th>Mind</th>
-            <th>Mental</th>
-          </tr>
-        </thead>
-        <tbody class="center aligned">
-          <tr>
-            <td><h1 class="ui header">7</h1></td> two wide column
-            <td><h1 class="ui header">5</h1></td>
-            <td><h1 class="ui header">9</h1></td>
-          </tr>
-        </tbody>
-      </table>
-      
+      <c:choose>
+        <c:when test="${empty noon.scoredate}">
+          <button class="ui fluid button" id="NOON" onclick="recordBtn(this.id)">
+            <i class="plus icon"></i>add new one
+      	  </button>
+        </c:when>
+        <c:otherwise>
+          <table class="ui celled table">
+            <thead class="center aligned">
+              <tr>
+                <th>Body</th>
+                <th>Mind</th>
+                <th>Mental</th>
+              </tr>
+            </thead>
+            <tbody class="center aligned">
+              <tr>
+                <td><h1 class="ui header">${noon.bodyscore}</h1></td>
+                <td><h1 class="ui header">${noon.mindscore}</h1></td>
+                <td><h1 class="ui header">${noon.mentalscore}</h1></td>
+              </tr>
+            </tbody>
+          </table>
+        </c:otherwise>
+      </c:choose>
+<!-- PM Score -->    
       <h4 class="ui horizontal divider header"> PM </h4>
-      <button class="ui fluid button" id="PM" onclick="recordBtn(this.id)">
-        <i class="plus icon"></i>
-        add new one
-      </button> -->
+      <c:choose>
+        <c:when test="${empty pm.scoredate}">
+          <button class="ui fluid button" id="PM" onclick="recordBtn(this.id)">
+            <i class="plus icon"></i>add new one
+      	  </button>
+        </c:when>
+        <c:otherwise>
+          <table class="ui celled table">
+            <thead class="center aligned">
+              <tr>
+                <th>Body</th>
+                <th>Mind</th>
+                <th>Mental</th>
+              </tr>
+            </thead>
+            <tbody class="center aligned">
+              <tr>
+                <td><h1 class="ui header">${pm.bodyscore}</h1></td>
+                <td><h1 class="ui header">${pm.mindscore}</h1></td>
+                <td><h1 class="ui header">${pm.mentalscore}</h1></td>
+              </tr>
+            </tbody>
+          </table>
+        </c:otherwise>
+      </c:choose>
+      
+      
+      
     </div>
 
 <script>
