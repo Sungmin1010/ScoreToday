@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sct.mapper.StaticMapper">
+  
+  <select id="testSelect" parameterType="map" resultType="StaticVO">
+    SELECT DATE(scoredate) date, ROUND(avg(bodyscore), 1) bodyscore, ROUND(avg(mindscore), 1) mindscore, ROUND(avg(mentalscore), 1) mentalscore
+  FROM tb_score
+  WHERE DATE(scoredate) BETWEEN #{startDate} AND #{endDate} AND useq=#{useq}
+  GROUP BY date;
+  </select>
+  
+ 
+  
+</mapper>

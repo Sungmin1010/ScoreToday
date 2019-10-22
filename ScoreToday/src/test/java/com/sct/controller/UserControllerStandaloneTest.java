@@ -118,6 +118,7 @@ public class UserControllerStandaloneTest {
 		.andExpect(model().attribute("am", any(ScoreVO.class)))
 		.andExpect(model().attribute("noon", any(ScoreVO.class)))
 		.andExpect(model().attribute("pm", any(ScoreVO.class)))
+		.andDo(print())
 		;
 		
 	}
