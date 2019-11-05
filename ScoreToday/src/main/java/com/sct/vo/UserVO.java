@@ -6,10 +6,10 @@ public class UserVO {
 
 	private int useq;
 	private String id;
-	private String name;
 	private String email;
-	private String password;
+	private String pwd;
 	private Date joindate;
+	private Date modidate;
 	public int getUseq() {
 		return useq;
 	}
@@ -22,23 +22,17 @@ public class UserVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public Date getJoindate() {
 		return joindate;
@@ -46,10 +40,16 @@ public class UserVO {
 	public void setJoindate(Date joindate) {
 		this.joindate = joindate;
 	}
+	public Date getModidate() {
+		return modidate;
+	}
+	public void setModidate(Date modidate) {
+		this.modidate = modidate;
+	}
 	@Override
 	public String toString() {
-		return "User [useq=" + useq + ", id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", joindate=" + joindate + "]";
+		return "UserVO [useq=" + useq + ", id=" + id + ", email=" + email + ", pwd=" + pwd + ", joindate=" + joindate
+				+ ", modidate=" + modidate + "]";
 	}
 	
 	
